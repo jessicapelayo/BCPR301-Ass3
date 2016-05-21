@@ -49,11 +49,19 @@ class Processor(object):
 
     def pie_gender(self):
         dist = self.database.get_gender_distribution()
-        self.plotter.pie_gender(dist["males"], dist["females"])
+        #self.plotter.pie_gender(dist["males"], dist["females"])
+        ChartConcreteCreator("pie", ['Males', 'Females'], dist, "Distribution of Gender (" + str(sum(dist)) + " people):")
 
     def scatter_sales(self):
         sales_list = self.database.get_sales_ordered()
-        self.plotter.scatter_sales(sales_list)
+        #self.plotter.scatter_sales(sales_list)
+        ChartConcreteCreator("scatter", ['Sales ($)'], sales_list, "Range of Sales Numbers")
 
     def bar_bmi_vs_gender(self):
-        self.plotter.bar_bmi_vs_gender(self.database.get_male_bmi(),self.database.get_female_bmi() )
+        #self.plotter.bar_bmi_vs_gender(self.database.get_male_bmi(),self.database.get_female_bmi() )
+        main_group = ["Male", "Female"]
+        sub_group = ['Normal', 'Overweight', 'Obese', 'Underweight']
+        axis = ['BMI', 'No. of People']
+        labels = [main_group, sub_group, axis]
+        values = [self.database.get_male_bmi(), self.database.get_female_bmi()]
+        ChartConcreteCreator("bargrouped", labels, values, "Gender by BMI")

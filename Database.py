@@ -121,7 +121,8 @@ class Database(object):
             else:
                 f += 1
 
-        dist = {"males": m, "females": f}
+        #dist = {"males": m, "females": f}
+        dist = [m , f]
         return dist
 
     def get_sales_ordered(self):
