@@ -60,6 +60,7 @@ class CmdFunction(object):
                 self.processor.pie_bmi()
             elif input == "2":
                 self.processor.pie_gender()
+                pass
             elif input == "3":
                 self.processor.scatter_sales()
             elif input == "4":

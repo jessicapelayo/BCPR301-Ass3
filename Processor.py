@@ -2,7 +2,7 @@ from FileHandler import *
 from Database import *
 from Editor import *
 from Plotter import *
-
+from AbstractFactory import *
 
 class Processor(object):
 
@@ -12,6 +12,7 @@ class Processor(object):
         self.database = Database()
         self.editor = Editor()
         self.plotter = Plotter()
+
 
     def add_data(self, fileloc):
         self.database.empty_database()
@@ -43,7 +44,8 @@ class Processor(object):
 
     def pie_bmi(self):
         dist = self.database.get_bmi_distribution()
-        self.plotter.pie_bmi(dist["normal"], dist["overweight"], dist["obese"], dist["underweight"])
+        #self.plotter.pie_bmi(dist["normal"], dist["overweight"], dist["obese"], dist["underweight"])
+        ChartConcreteCreator("pie", ['Normal', 'Overweight', 'Obese', 'Underweight'], dist, "Distribution of BMI indexes (" + str(sum(dist)) + " people):")
 
     def pie_gender(self):
         dist = self.database.get_gender_distribution()

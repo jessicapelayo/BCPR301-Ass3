@@ -107,7 +107,8 @@ class Database(object):
             elif b == "Obesity":
                 ob += 1
 
-        dist = {"normal" : norm, "overweight" : ov, "obese": ob, "underweight": uw}
+        #dist = {"normal" : norm, "overweight" : ov, "obese": ob, "underweight": uw}
+        dist = [norm, ov, ob, uw]
         return dist
 
     def get_gender_distribution(self):
