@@ -8,8 +8,8 @@ class Plotter(object):
         total = normal_dist + ov_dist + obese_dist + uw_dist
         labels = "Normal", "Overweight", "Obesity", "Underweight"
         size = [normal_dist, ov_dist, obese_dist, uw_dist]
-        colors = ['yellowgreen', 'gold', 'lightskyblue', 'lightcoral']
-        plt.pie(size, labels=labels, colors=colors, autopct='%1.1f%%', shadow=True, startangle=90)
+        #colors = ['yellowgreen', 'gold', 'lightskyblue', 'lightcoral']
+        plt.pie(size, labels=labels,autopct='%1.1f%%', shadow=True, startangle=90)
         plt.axis('equal')
         plt.title("Distribution of BMI indexes (" + str(total) + " people):")
         plt.show()
@@ -36,7 +36,7 @@ class Plotter(object):
         x = male_bmi
         y = female_bmi
 
-        fig, ax = plt.subplots()
+        #fig, ax = plt.subplots()
 
         index = np.arange(n_groups)
         bar_width = 0.25
@@ -47,6 +47,5 @@ class Plotter(object):
         plt.title('bmi by gender')
         plt.xticks(index + bar_width, ('Normal', 'Overweight', 'Obesity', 'Underweight'))
         plt.legend()
-
         plt.show()
 

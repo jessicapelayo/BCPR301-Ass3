@@ -7,14 +7,19 @@ class Chart(object): #abstract product
         self.labels = labels
         self.values = values
         self.title = title
+        self.chart_specific_operations()
         self.draw()
 
-    def draw(self):
+    def chart_specific_operations(self):
         pass
+
+    def draw(self):
+        plt.title(self.title)
+        plt.show()
 
 
 class PieChart(Chart): #product
-    def draw(self):
+    def chart_specific_operations(self):
         total = 0
         for value in self.values:
             total += value
@@ -22,35 +27,31 @@ class PieChart(Chart): #product
         size = self.values
         plt.pie(size, labels = label_tuple, autopct='%1.1f%%', shadow=True, startangle=90)
         plt.axis('equal')
-        plt.title(self.title)
-        plt.show()
+
 
 class ScatterChart(Chart): #product
-    def draw(self):
+    def chart_specific_operations(self):
         plt.scatter(range(len(self.values)), self.values)
-        plt.title(self.title)
         plt.ylabel(self.labels[0])
-        plt.show()
 
 
 class BarGroupedChart(Chart): #product
-    def draw(self):
+    def chart_specific_operations(self):
         sub_groups = len(self.labels[1])
         index = np.arange(sub_groups)
         bar_width = 0.25
         i = 0
+        colour = ['b', 'r', 'g', 'k', 'm']
         temp = index
         while i < len(self.labels[0]):
-            plt.bar(temp, self.values[i], bar_width, color=, label=self.labels[0][i])
+            plt.bar(temp, self.values[i], bar_width, color=colour[i], label=self.labels[0][i])
             i += 1
             temp = index + bar_width
         plt.xlabel(self.labels[2][0])
         plt.ylabel(self.labels[2][1])
-        plt.title(self.title)
         a_tuple = tuple(self.labels[1])
         plt.xticks(index + bar_width, a_tuple)
         plt.legend()
-        plt.show()
 
 class ChartCreator(object):
     def __init__(self, chart_type, labels_list, values_list, title):
